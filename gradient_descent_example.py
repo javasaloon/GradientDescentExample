@@ -1,4 +1,5 @@
 from numpy import *
+import csv
 
 # y = mx + b
 # m is slope, b is y-intercept
@@ -26,8 +27,19 @@ def step_gradient(b_current, m_current, points, learningRate):
 def gradient_descent_runner(points, starting_b, starting_m, learning_rate, num_iterations):
     b = starting_b
     m = starting_m
+    error = compute_error_for_line_given_points(b, m, points)
+    params = [ [b, m, error] ]
     for i in range(num_iterations):
         b, m = step_gradient(b, m, array(points), learning_rate)
+        error = compute_error_for_line_given_points(b, m, points)
+        params.append([b, m, error])
+    print(params)
+    
+    with open('errors.csv', 'w') as csvfile:
+        spamwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        for r in params: 
+            spamwriter.writerow(r)
+
     return [b, m]
 
 def run():
