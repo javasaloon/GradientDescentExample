@@ -1,0 +1,1 @@
+cd ~/github/GradientDescentExample/hf = figure (); data = csvread("data.csv");printf(typeinfo(data));plot(data(:, 1), data(:,2), ".");hold on;xlabel ("X");ylabel ("Y");print (hf, "images/dots.png", "-dpng");print (hf, "images/dots.svg", "-dsvg");
