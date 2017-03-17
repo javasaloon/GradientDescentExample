@@ -1,1 +1,1 @@
-cd ~/github/GradientDescentExample/hf = figure (); data = csvread("errors.csv");plot3(data(:, 1), data(:,2), data(:,3));xlabel ("b");ylabel ("m");zlabel ("error");print (hf, "images/errors.png", "-dpng");
+cd ~/github/GradientDescentExample/hf = figure (); data = csvread("errors.csv");plot3(data(:, 1), data(:,2), data(:,3), ".");xlabel ("b");ylabel ("m");zlabel ("error");print (hf, "images/errors.png", "-dpng");
