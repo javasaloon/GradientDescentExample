@@ -42,8 +42,25 @@ def gradient_descent_runner(points, starting_b, starting_m, learning_rate, num_i
 
     return [b, m]
 
+def dumpErrorArea(points):
+    params = [ ]
+    for i in range(-100, 101):
+        for j in range(-100, 101):
+            m = i/100.0
+            b = j/100.0
+            error = compute_error_for_line_given_points(m, b, points)
+            print [m, b, error]
+            params.append([m, b, error])
+
+    with open('all-errors.csv', 'w') as csvfile:
+        spamwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        for r in params: 
+            spamwriter.writerow(r)
+
 def run():
     points = genfromtxt("data.csv", delimiter=",")
+    dumpErrorArea(points)
+
     learning_rate = 0.0001
     initial_b = 0 # initial y-intercept guess
     initial_m = 0 # initial slope guess
